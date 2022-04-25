@@ -2,6 +2,6 @@
 ## Title: HandyDungeonTracker
 ## Notes: Just a Handy Dungeon Tracker Addon & maybe even more.
 ## Version: 0.0.1
-## Author: Wardur, Bronturra
+## Author: Wareload, Bronturra
 
 HandyDungeonTracker.lua

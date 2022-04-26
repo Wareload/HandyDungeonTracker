@@ -1,5 +1,5 @@
 ## Interface: 90200
-## Title: HandyDungeonTracker
+## Title: |cffff0050HandyDungeonTracker|r - Pre Alpha 0.0.1
 ## Notes: Just a Handy Dungeon Tracker Addon & maybe even more.
 ## Version: 0.0.1
 ## Author: Wareload, Bronturra

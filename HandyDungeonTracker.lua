@@ -16,8 +16,28 @@ moneyFrame:RegisterEvent("CHAT_MSG_Money")
 lootFrame:RegisterEvent("CHAT_MSG_Loot")
 --enteringInstanceFrame:RegisterEvent("WORLD_MAP_UPDATE")
 enteringInstanceFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-bossKillFrame:RegisterEvent("BOSS_KILL")
+bossKillFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
+local function OnEvent(self, event)
+    if C_EncounterJournal.IsEncounterComplete(1443) then -- Adarogg
+        msg = "Adarogg Down - C_EJ.IEC(1443)"
+        SendChatMessage(msg ,"SAY" ,"COMMON" , nil);
+    elseif C_EncounterJournal.IsEncounterComplete(694) then -- Adarogg
+        msg = "Adarogg Down - C_EJ.IEC(694)"
+        SendChatMessage(msg ,"SAY" ,"COMMON" , nil);
+    elseif C_EncounterJournal.IsEncounterComplete(1444) then -- Dark Shaman Koranthal
+        print("DARK SHAMAN DOWN")
+    elseif C_EncounterJournal.IsEncounterComplete(1445) then -- Slagmaw
+        print("SLAGMAW DOWN")
+    elseif C_EncounterJournal.IsEncounterComplete(1446) then -- Lava Guard Gordoth
+        print("GORDOTH DOWN")
+    elseif C_EncounterJournal.IsEncounterComplete(61528) then -- Lava Guard Gordoth
+        print("GORDOTH DOWN")
+    end
+    --print(CombatLogGetCurrentEventInfo())
+end
+
+bossKillFrame:SetScript("OnEvent", OnEvent)
 
 local function logMoney()
     -- Simply for Test purpose, prints out if you looted any amount of money
@@ -29,15 +49,29 @@ local function logLoot()
     print("|cffff0050[HDT]|r" .. " - |cff40ea1aSomeone looted an Item.|r")
 end
 
+--- Defines a solid tracking method for ingame time
+--- - Tracks the current Time in Game
+local function getCurrentTimeInInstance()
+    local hours, mins = GetGameTime()
+    return hours .. ":" .. mins
+end
+
 local function trackEnteringInstance()
     if IsInInstance() then
-        local currentTimeInSeconds = GetTime()
+        print("StartTime: " .. "["..getCurrentTimeInInstance().."]")
+        msg = "StartTime: " .. "["..getCurrentTimeInInstance().."]"
+        SendChatMessage(msg ,"SAY" ,"COMMON" , nil);
         print("|cffff0050[HDT]|r" .. " - |cff40ea1aI JOINED AN INSTANCE.|r")
-        print(currentTimeInSeconds)
+
+        for _ = 1, 2^27 do
+            -- Busy loop to make some time pass.
+        end
+        print("EndTime: " .. "["..getCurrentTimeInInstance().."]")
     else
-        print("|cffff0050[HDT]|r" .. " - |cff40ea1aI JOINED THE WORLD.|r")
+    print("|cffff0050[HDT]|r" .. " - |cff40ea1aI JOINED THE WORLD.|r")
     end
 end
+
 
 local function trackBossKill()
     if C_EncounterJournal.IsEncounterComplete(1443) then -- Adarogg
@@ -65,7 +99,7 @@ end
 moneyFrame:SetScript("OnEvent", logMoney)
 lootFrame:SetScript("OnEvent", logLoot)
 enteringInstanceFrame:SetScript("OnEvent", trackEnteringInstance)
-bossKillFrame:SetScript("OnEvent", trackBossKill)
+--bossKillFrame:SetScript("OnEvent", trackBossKill)
 
 
 

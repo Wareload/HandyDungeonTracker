@@ -91,7 +91,35 @@ local dungeonList = {
     [644] = 286, -- King Ymiron, Utgarde Pinnacle
     -- CATA Dungeons
     [109] = 66, -- Ascendant Lord Obsidius, Blackrock Caverns
+        -- Deadmines already exists
     [289] = 184, -- Murozond, End Time
+    [134] = 71, -- Erudax, the Duke of Below, Grim Batol
+    [130] = 70, -- Rajh, Construct of Sun, Halls of Origination
+    [341] = 186, -- Archbishop Benedictus, Hour of Twilight
+    [122] = 69, -- Siamat, Lost City of Tol'vir
+        -- Shadowfang Keep already exists
+    [113] = 67, -- High Priestess Azil, The Stonecore
+    [117] = 68, -- Asaad, Caliph of Zephyrs, The Vortex Pinnacle
+    [104] = 65, -- Ozumat, Throne of Tides
+    [292] = 185, -- Mannoroth and Varo'then, Well of Eternity
+    [191] = 77, -- Daakara, Zul'Aman
+    [185] = 76, -- Jin'do the Godbreaker, Zul'Gurub
+    -- MOP Dungeons
+    [649] = 303, -- Raigonn, Gate of the Setting Sun
+    [698] = 321, -- Xin the Weaponmaster, Mogu'shan Palace
+        -- Scarlet Halls already exists
+        -- Scarlet Monastery already exists
+        -- Scholomance already exists
+    [686] = 312, -- Taran Zhu, Shado-Pan Monastery
+    [727] = 324, -- Wing Leader Ner'onok, Siege of Niuzao Temple
+    [670] = 302, -- Yan-Zhu the Uncasked, Stormstout Brewery
+    [335] = 313, -- Sha of Doubt, Temple of the Jade Serpent
+    -- WOD Dungeons
+    [1225] = 547, -- Teron'gor, Auchindoun
+    [889] = 385, -- Gug'rokk, Bloodmaul Slag Mines
+    [1133] = 536, -- Skylord Tovra, Grimrail Depot
+
+
 
 
 }
@@ -137,7 +165,6 @@ local function isPlayerEnteringInstance()
 
     end
 end
-
 
 
 --- Simple Eventlogging Function

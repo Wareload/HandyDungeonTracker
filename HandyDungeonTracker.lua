@@ -118,9 +118,49 @@ local dungeonList = {
     [1225] = 547, -- Teron'gor, Auchindoun
     [889] = 385, -- Gug'rokk, Bloodmaul Slag Mines
     [1133] = 536, -- Skylord Tovra, Grimrail Depot
-
-
-
+    [1238] = 558, -- Skulloc, Iron Docks
+    [1160] = 537, -- Ner'zhul, Shadowmoon Burial Grounds
+    [968] = 476, -- High Sage Viryx, Skyreach
+    [1210] = 556, -- Yalnu, The Everbloom
+    [1234] = 559, -- Warlord Zaela, Upper Blackrock Spire
+    -- Legion Dungeons
+    [1697] = 777, -- Sael'orn, Assault on Violet Hold
+    [1711] = 777, -- Fel Lord Betrug, Assault on Violet Hold
+    [1672] = 740, -- Lord Kur'talos Ravencrest, Black Rook Hold
+    [1878] = 900, -- Mephistroth, Cathedral of Eternal Night
+    [1720] = 800, -- Advisor Melandrus, Court of Stars
+    [1657] = 762, -- Shade of Xavius, Darkheart Thicket
+    [1492] = 716, -- Wrath of Azshara, Eye of Azshara
+    [1489] = 721, -- Odyn, Halls of Valor
+    [1663] = 727, -- Helya, Maw of Souls
+    [1687] = 767, -- Dargrul the Underking, Neltharion's Lair
+        -- Return to Karazhan is currently missing
+    [1982] = 945, -- L'ura, Seat of Truimvirate
+    [1501] = 726, -- Advisor Vandros, The Arcway
+    [1470] = 707, -- Cordana Felsong, Vault of the Wardens
+    -- BFA Dungeons
+    [2030] = 968, -- Yazma, Atal'Dazar
+    [2095] = 1001, -- Harlan Sweete, Freehold
+    [2172] = 1041, -- Dazar, The First King, Kings' Rest
+        -- Operation Mechagon is currently missing
+    [2156] = 1036, -- Vol'zith the Whisperer, Shrine of the Storm
+    [2140] = 1023, -- Viq'Goth, Siege of Boralus
+    [2145] = 1030, -- Avatar of Sethraliss, Temple of Sethraliss
+    [2116] = 1012, -- Mogul Razdunk, The MOTHERLODE!!
+    [2158] = 1022, -- Unbound Abomination, The Underrot
+    [2096] = 1002, -- Overseer Korgus, Tol Dagor
+    [2129] = 1021, -- Gorak Tul, Waycrest Manor
+    -- SL Dungeons
+    [2410] = 1188, -- Mueh'zala, De Other Side
+    [2413] = 1185, -- Lord Chamberlain, Halls of Atonement
+    [2405] = 1184, -- Tred'ova, Mists of Tirna Scithe
+    [2404] = 1183, -- Margrave Stradama, Plaguefall
+    [2407] = 1189, -- General Kaal, Sanguine Depths
+    [2412] = 1186, -- Devos, Paragon of Doubt, Spires of Ascension
+        -- Tazavesh is currently missing
+    [2396] = 1182, -- Nalthor the Rimebinder, The Necrotic Wake
+    [2417] = 1187, -- Mordretha, the Endless Empress, Theater of Pain
+    -- DF Dungeons
 
 }
 

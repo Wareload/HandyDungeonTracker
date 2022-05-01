@@ -2,6 +2,8 @@
     -- Track 1st, 2nd, 3rd etc. Bosses too? Any Functionality?
 -- Timer Difference: Started 20:00 Ended 20:05 => 5 mins and X secs cleared
 -- Hovering over the Instance-Portal on a Map, you can get all relevant Data
+-- Reset the dungeonFinished Boolean to false after someone in your grp resets the dungeon
+-- Implement alternative chat output, e.g. you are not in a grp so the finish text is in say chat
 
 
 
@@ -12,16 +14,16 @@ SlashCmdList["RL"] = function(msg)
 end
 
 -- Define Frame
-local moneyFrame = CreateFrame("Frame")
-local lootFrame = CreateFrame("Frame")
+--local moneyFrame = CreateFrame("Frame")
+--local lootFrame = CreateFrame("Frame")
 local enteringInstanceFrame = CreateFrame("Frame")
 local bossKillFrame = CreateFrame("Frame")
 
 
 
 -- Register Event when in Chat Money was looted
-moneyFrame:RegisterEvent("CHAT_MSG_Money")
-lootFrame:RegisterEvent("CHAT_MSG_Loot")
+-- moneyFrame:RegisterEvent("CHAT_MSG_Money")
+-- lootFrame:RegisterEvent("CHAT_MSG_Loot")
 --enteringInstanceFrame:RegisterEvent("WORLD_MAP_UPDATE")
 enteringInstanceFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 bossKillFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
@@ -197,6 +199,7 @@ local function isPlayerEnteringInstance()
         --print("EndTime: " .. "["..getCurrentTimeInInstance().."]")
         --isFirstBossDown, isSecondBossDown, isThirdBossDown, isFourthBossDown = false, false, false, false
     else
+        isFourthBossDown = false
         print("|cffff0050[HDT]|r" .. " - |cff40ea1aI JOINED THE WORLD.|r")
         --print(isFirstBossDown)
         --print(isSecondBossDown)

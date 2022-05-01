@@ -16,8 +16,8 @@ end
 -- Define Frame
 --local moneyFrame = CreateFrame("Frame")
 --local lootFrame = CreateFrame("Frame")
-local enteringInstanceFrame = CreateFrame("Frame")
-local bossKillFrame = CreateFrame("Frame")
+local playerLocationFrame = CreateFrame("Frame")
+local dungeonProgressFrame = CreateFrame("Frame")
 
 
 
@@ -25,13 +25,11 @@ local bossKillFrame = CreateFrame("Frame")
 -- moneyFrame:RegisterEvent("CHAT_MSG_Money")
 -- lootFrame:RegisterEvent("CHAT_MSG_Loot")
 --enteringInstanceFrame:RegisterEvent("WORLD_MAP_UPDATE")
-enteringInstanceFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-bossKillFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+playerLocationFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+dungeonProgressFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
-local isSecondBossDown = false
-local isFirstBossDown = false
-local isThirdBossDown = false
-local isFourthBossDown = false
+
+local isRunComplete = false
 local startingTime
 
 --- Endboss of a Dungeon ID / Dungeon ID
@@ -183,28 +181,17 @@ local function getCurrentTimeInInstance()
     return string.format("%02d:%02d", hours, mins)
 end
 
-local function isPlayerEnteringInstance()
+local function trackInstanceEntrance()
     if IsInInstance() then
         name, description, bgImage, buttonImage1, loreImage, buttonImage2, dungeonAreaMapID, link, shouldDisplayDifficulty = EJ_GetInstanceInfo(dungeonList[697])
         nameD, groupType, isHeroic, isChallengeMode, displayHeroic, displayMythic, toggleDifficultyID = GetDifficultyInfo(GetDungeonDifficultyID())
-        -- print(nameD)
 
         startingTime = getCurrentTimeInInstance()
-        -- print(type(startingTime))
-        --print("StartTime: " .. "["..getCurrentTimeInInstance().."]")
-        --msg = "StartTime: " .. "["..getCurrentTimeInInstance().."]"
-        --SendChatMessage(msg ,"SAY" ,"COMMON" , nil);
         print("|cffff0050[HDT]|r" .. " - |cff40ea1aI JOINED AN INSTANCE.|r")
 
-        --print("EndTime: " .. "["..getCurrentTimeInInstance().."]")
-        --isFirstBossDown, isSecondBossDown, isThirdBossDown, isFourthBossDown = false, false, false, false
     else
-        isFourthBossDown = false
+        isRunComplete = false
         print("|cffff0050[HDT]|r" .. " - |cff40ea1aI JOINED THE WORLD.|r")
-        --print(isFirstBossDown)
-        --print(isSecondBossDown)
-        --print(isThirdBossDown)
-        --print(isFourthBossDown)
 
     end
 end
@@ -218,7 +205,7 @@ end
 local function OnEvent(self, event)
     if IsInInstance() then
         for key, value in pairs(dungeonList) do
-            if C_EncounterJournal.IsEncounterComplete(key) and not isFourthBossDown then
+            if C_EncounterJournal.IsEncounterComplete(key) and not isRunComplete then
                 -- Get the Name/Link of the Dungeon
                 name, description, bgImage, buttonImage1, loreImage, buttonImage2, dungeonAreaMapID, link, shouldDisplayDifficulty = EJ_GetInstanceInfo(dungeonList[key])
                 -- Get the Difficulty of the Dungeon
@@ -229,42 +216,19 @@ local function OnEvent(self, event)
                 --msg2 = "Instance cleared in: " .. startingTime-endTime .. "[" .. startingTime .. "]" .. " - " .. "[" .. endTime .. "]"
                 msg2 = link .. "[" .. nameDifficulty .. "]" .. " cleared. " .. "[" .. startingTime .. "]" .. " - " .. "[" .. endTime .. "]"
                 SendChatMessage(msg2 ,"PARTY" ,"COMMON" , nil);
-                isFourthBossDown = true
+                isRunComplete = true
             end
         end
-
-        if C_EncounterJournal.IsEncounterComplete(694) and not isFirstBossDown then
-            msg = "Adarogg Down - C_EJ.IEC(694)"
-            SendChatMessage(msg ,"SAY" ,"COMMON" , nil)
-            SendChatMessage(msg ,"PARTY" ,"COMMON" , nil);
-            isFirstBossDown = true
-        elseif C_EncounterJournal.IsEncounterComplete(695) and not isSecondBossDown then
-            msg = "Dark Shaman Koranthal Down - C_EJ.IEC(695)"
-            SendChatMessage(msg ,"SAY" ,"COMMON" , nil)
-            SendChatMessage(msg ,"PARTY" ,"COMMON" , nil);
-            isSecondBossDown = true
-        elseif C_EncounterJournal.IsEncounterComplete(696) and not isThirdBossDown then
-            msg = "Slagmaw Down - C_EJ.IEC(696)"
-            SendChatMessage(msg ,"SAY" ,"COMMON" , nil)
-            SendChatMessage(msg ,"PARTY" ,"COMMON" , nil);
-            isThirdBossDown = true
-        elseif C_EncounterJournal.IsEncounterComplete(697) and not isFourthBossDown then
-            msg = "Lava Guard Gordoth Down - C_EJ.IEC(696)"
-            SendChatMessage(msg ,"SAY" ,"COMMON" , nil)
-            SendChatMessage(msg ,"PARTY" ,"COMMON" , nil);
-            isFourthBossDown = true
-        end
-
         --print(CombatLogGetCurrentEventInfo())
     end
 end
 
-bossKillFrame:SetScript("OnEvent", OnEvent)
+dungeonProgressFrame:SetScript("OnEvent", OnEvent)
 
 -- Event trigger, executes function when the Event occurs
 moneyFrame:SetScript("OnEvent", logMoney)
 lootFrame:SetScript("OnEvent", logLoot)
-enteringInstanceFrame:SetScript("OnEvent", isPlayerEnteringInstance)
+playerLocationFrame:SetScript("OnEvent", trackInstanceEntrance)
 --bossKillFrame:SetScript("OnEvent", trackBossKill)
 
 
